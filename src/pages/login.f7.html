@@ -1,0 +1,76 @@
+<template>
+  <div class="page no-toolbar no-navbar no-swipeback" data-name="login">
+      <div class="page-content login-screen-content">
+          <div class="login_page_screen">
+
+              <div>
+                  <div class="login-img">
+                      <img src="static/joomdev_logo.png"/>
+                  </div>
+
+                 <p class="text-align-center">Please Enter Mobile Number to Recived OTP.</p> 
+                  
+                  <form id="loginForm">
+
+                    <div class="list inline-labels no-hairlines-md">
+                      <ul>
+                          <li class="item-content item-input">
+                              <div class="item-inner">
+                                  <div class="item-input-wrap input_mobile">
+                                      <span class="contry_code">+91</span>
+                                      <input type="text" id="mobileNumberInput" placeholder="Mobile Number" maxlength="10" minlength="10"  name="mobile" required validate pattern="[0-9]*" data-error-message="Please enter valid mobile mumber !!" value="" @input="${updateMobile}" />
+                                      <span class="input-clear-button"></span>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                    </div>
+
+                    <div class="list">
+
+                          <ul>
+                              <li style="padding: 0 15px;">
+                               
+                                  <button class="col button button-fill button-round" @click="${alertLoginData}">Next</button>
+                              </li>
+                          </ul>
+                         
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</template>
+
+<script>
+  export default function (props, {$f7, $on, $update, $}) {
+    var app = $f7;
+    var mobile = '';
+
+    const updateMobile = (e) => {
+          mobile = e.target.value;
+          $update();
+      }
+
+      
+      const alertLoginData = () => {
+       let valid = app.input.validate("#mobileNumberInput");
+       if(valid){
+        app.views.main.router.navigate('/otp/'+mobile+'/');
+
+       }
+       
+      }
+
+
+      $(document).on('submit', '#loginForm', function (e) {
+          e.preventDefault();
+      });
+
+    
+
+      return $render;
+  }
+</script>

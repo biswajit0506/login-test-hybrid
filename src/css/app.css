@@ -1,0 +1,99 @@
+/* iOS Cordova Tweak */
+.device-cordova.device-ios {
+  height: 100vh;
+}
+
+/* Custom color theme properties */
+:root {
+  --f7-theme-color: #ff7e00;
+  --f7-theme-color-rgb: 255, 126, 0;
+  --f7-theme-color-shade: #d66a00;
+  --f7-theme-color-tint: #ff9329;
+}
+
+/* Your app custom styles here */
+
+/*login page*/
+.login-img{
+  text-align: center;
+  padding: 25px;
+  margin-top: 100px;
+}
+.login-img img{
+  /* height:px; */
+  width: 80%;
+}
+
+
+
+.input_mobile{
+  display: flex;
+  align-items: center;
+}
+.input_mobile:after {
+  content: '';
+  position: absolute;
+  background-color: var(--f7-theme-color) !important;
+  display: block;
+  z-index: 15;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform-origin: 50% 100%;
+  transform: scaleY(2) !important;
+}
+
+.input_line:after {
+  content: '';
+  position: absolute;
+  background-color: var(--f7-theme-color) !important;
+  display: block;
+  z-index: 15;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform-origin: 50% 100%;
+  transform: scaleY(2) !important;
+}
+
+.input_mobile input[type=text], .input_mobile input[type=number]{
+  padding-left: 10px;
+}
+
+
+#partitionedNew {
+  padding-left: 15px;
+  letter-spacing: 42px;
+  border: 0;
+  background-image: linear-gradient(to left, #ff7e00 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 50px 2px;
+  background-repeat: repeat-x;
+  background-position-x: 35px;
+  width: 340px;
+  min-width: 340px;
+}
+
+#divInner{
+  left: 0;
+  position: sticky;
+}
+
+#divOuter{
+  width: 296px; 
+  overflow: hidden;
+}
+
+.optParent {
+  padding: 10px;
+}
+
+.headerTitle{
+  color: #ff7e00;
+}

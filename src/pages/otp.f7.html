@@ -1,0 +1,114 @@
+<template>
+  <div class="page no-toolbar no-navbar no-swipeback" data-name="otp">
+    <div class="page-content login-screen-content">
+      <div class="login_page_screen">
+
+        <div>
+          <div class="login-img">
+            <img src="static/joomdev_logo.png" />
+          </div>
+
+          <!-- <div class="login-screen-title animate__animated animate__heartBeat">RIMS Covid-19 BMS</div> -->
+          <!-- <div class="login-screen-title animate__animated animate__heartBeat">RIMS Covid-19 BMS</div> -->
+
+          <p class="text-align-center">Please enter the one time password received at your phone number : +91
+            XXXXXX-${mobileLast}</p>
+
+          <form id="otpForm">
+
+            <div class="list inline-labels no-hairlines-md">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner optParent">
+
+
+
+                    <div id="divOuter">
+                      <div id="divInner">
+                        <input id="partitionedNew" type="text" maxlength="6" minlength="6" name="otp" pattern="[0-9]*"
+                          data-error-message="Please enter valid OTP !!" value="${otp}" @input="${updateOTP}"
+                          onKeyPress="if(this.value.length==6) return false;" required validate />
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+
+
+            <div class="list">
+
+              <ul>
+                <li style="padding: 0 15px;">
+                  <button class="col button button-fill button-round" @click="${validateOPT}">Validate OTP</button>
+                </li>
+              </ul>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default function (props, { $f7, $on, $update, $ }) {
+    var app = $f7;
+    let otp = '';
+    let mobileEnter = props.mobile;
+    let mobileLast = props.mobile.slice(-4);
+
+    console.log("mobile : " + mobileEnter);
+
+    const sendedOTP = "123456"; //========= hardcoded 
+
+    const updateOTP = (e) => {
+      otp = e.target.value;
+      $update();
+    }
+
+    const validateOPT = () => {
+
+      //=========== check opt =========
+      // === now its considaring as hard coded when we have SMS API then it will added  =======
+
+      //check otp ==
+      let valid = app.input.validate("#partitionedNew");
+      if (valid) {
+        if (otp == sendedOTP) { ///login success
+          localStorage.setItem("token", "");//============= now we dont have token ==
+          localStorage.setItem("mobile", mobileEnter);
+          localStorage.setItem("is_login", 1);
+
+          app.views.main.router.navigate('/home/', {
+            ignoreCache: true,
+            reloadCurrent: true,
+          });
+          app.views.main.router.clearPreviousHistory();
+
+        } else {
+          let toastBottom = app.toast.create({
+            text: "Wrong OTP Entered !!",
+            closeTimeout: 2000,
+          });
+          toastBottom.open();
+        }
+
+      }
+
+    }
+
+    $(document).on('submit', '#otpForm', function (e) {
+      e.preventDefault();
+
+    });
+
+    return $render;
+  }
+</script>

@@ -1,0 +1,73 @@
+<template>
+  <div id="app">
+
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover theme-dark_ panel-init">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+              <div class="title">Menu</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="list links-list">
+              <ul class="remove_arrow">
+
+                <li>
+                  <a href="#" class="panel-close">
+                    <div class="item-media">
+                      <i class="icon material-icons">person</i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">My Profile</div>
+                    </div>
+                  </a>
+                </li>
+
+
+                <li>
+                  <a href="#" class="panel-close">
+                    <div class="item-media"><i class="icon material-icons">help</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Support</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="panel-close" @click="${logout}">
+                    <div class="item-media"><i class="icon material-icons">power_settings_new</i></div>
+                    <div class="item-inner">
+                      <div class="item-title logout">Log Out</div>
+                    </div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main view-init safe-areas" data-url="/home/"></div>
+
+
+
+
+  </div>
+</template>
+<script>
+  export default (props, { $f7, $update }) => {
+
+    const logout = () => {
+      $f7.params.logOut();
+    }
+
+    return $render;
+  }
+</script>
